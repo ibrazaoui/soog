@@ -6,6 +6,7 @@
     <title>متجر بيع الأشياء المستعملة</title>
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <link rel="manifest" id="app-manifest">
+
     <script>
         const manifest = {
             "name": "سوق بلادي",
@@ -19,7 +20,10 @@
             new Blob([JSON.stringify(manifest)], { type: 'application/json' })
         );
     </script>
+
     <meta name="theme-color" content="#2e7d32">
+    <meta name="keywords" content="بيع، شراء، مستعمل، الجزائر، سوق بلادي، منتجات، إلكترونيات، أثاث، سيارات">
+    <link rel="canonical" href="https://sogbladi.github.io/my-usedstore/">
     <meta name="description" content="سوق بلادي - بيع وشراء الأشياء المستعملة في الجزائر">
     
         <style>
@@ -1080,8 +1084,24 @@
 [dir="rtl"] .phone-number {
     border-radius: 4px 0 0 4px;
 }
-    </style>
+    
+@media (prefers-color-scheme: dark) {
+    body {
+        background-color: #121212;
+        color: #ffffff;
+    }
+    .product-card {
+        background-color: #1e1e1e;
+    }
+    .notification {
+        background-color: #333;
+        color: white;
+    }
+}
+
+        </style>
 </head>
+
 <body>
     <!-- Login Page -->
     <div id="login-page" class="container">
@@ -1152,14 +1172,7 @@
                 <label for="email">البريد الإلكتروني</label>
                 <input type="email" id="email" placeholder="البريد الإلكتروني" autocomplete="email">
             </div>
-            <div class="form-group">
-                <label for="password">كلمة المرور</label>
-                <input type="password" id="password" placeholder="كلمة المرور" autocomplete="new-password">
-            </div>
-            <div class="form-group">
-                <label for="confirm-password">تأكيد كلمة المرور</label>
-                <input type="password" id="confirm-password" placeholder="تأكيد كلمة المرور" autocomplete="new-password">
-            </div>
+            
             <div class="form-group">
                 <label for="age">العمر</label>
                 <input type="number" id="age" placeholder="العمر" min="16" max="100">
@@ -1179,6 +1192,14 @@
                     <div class="phone-prefix">+213</div>
                     <input type="tel" id="register-phone" class="phone-number" placeholder="رقم الهاتف" inputmode="numeric" pattern="[0-9]{9}" minlength="9" maxlength="9">
                 </div>
+            </div>
+            <div class="form-group">
+                <label for="password">كلمة المرور</label>
+                <input type="password" id="password" placeholder="كلمة المرور" autocomplete="new-password">
+            </div>
+            <div class="form-group">
+                <label for="confirm-password">تأكيد كلمة المرور</label>
+                <input type="password" id="confirm-password" placeholder="تأكيد كلمة المرور" autocomplete="new-password">
             </div>
             <div class="form-actions">
                 <button id="back-to-login-from-register" class="btn btn-secondary">رجوع</button>
@@ -1456,6 +1477,7 @@
     <script>
         // تهيئة Supabase
         const supabaseUrl = 'https://nzyjlppvceyjbxzwxccw.supabase.co';
+        // ⚠️ لا تضع المفتاح هنا في الإنتاج!
         const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im56eWpscHB2Y2V5amJ4end4Y2N3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDcyNjI0NDAsImV4cCI6MjA2MjgzODQ0MH0.qFUu115Z-VascH7oC5Ec58EK-2FZnyZfgYPPNJ1HwN8';
         const supabase = window.supabase.createClient(supabaseUrl, supabaseKey);
 
@@ -2374,7 +2396,7 @@
                 productCard.innerHTML = `
                     <div class="product-image-container" tabindex="0" aria-label="صورة المنتج ${product.name}">
                         ${imageUrl ? 
-                            `<img src="${imageUrl}" alt="${product.name}" class="product-image">` :
+                            `<img src="${imageUrl}" alt="${product.name}" class="product-image" loading="lazy">` :
                             '<div style="font-size: 48px;">📷</div>'}
                     </div>
                     <div class="product-info">
@@ -3285,5 +3307,9 @@
             }
         });
     </script>
+
+    <footer style="text-align:center; font-size: 12px; color: gray; padding: 10px; margin-top: 20px;">
+        باستخدامك لهذا الموقع، فإنك توافق على <a href="#" style="color: gray;">شروط الاستخدام</a> و <a href="#" style="color: gray;">سياسة الخصوصية</a>.
+    </footer>
 </body>
 </html>
